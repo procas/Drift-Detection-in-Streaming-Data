@@ -35,6 +35,17 @@ from sklearn.exceptions import ConvergenceWarning
 import plotly.express as px
 with warnings.catch_warnings():
     warnings.filterwarnings("ignore", category=ConvergenceWarning)
+from pandas import read_csv, DataFrame
+from numpy.random import seed
+from sklearn.preprocessing import minmax_scale
+from sklearn.model_selection import train_test_split
+from keras.layers import Input, Dense
+from keras.models import Model
+import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+from sklearn.datasets.samples_generator import make_blobs
+from sklearn.cluster import KMeans
 
 
 # load data
@@ -87,12 +98,7 @@ y = df[:1000].values[:,10]
 
 # # Auto encoder check
 
-from pandas import read_csv, DataFrame
-from numpy.random import seed
-from sklearn.preprocessing import minmax_scale
-from sklearn.model_selection import train_test_split
-from keras.layers import Input, Dense
-from keras.models import Model
+
  
 # SCALE EACH FEATURE INTO [0, 1] RANGE
 sX = minmax_scale(X, axis = 0)
@@ -125,19 +131,8 @@ encoded_out[0:10]
 
 # # KMeans Check
 
-import numpy as np
-import pandas as pd
-from matplotlib import pyplot as plt
-from sklearn.datasets.samples_generator import make_blobs
-from sklearn.cluster import KMeans
-
-
 X, y = make_blobs(n_samples=300, centers=4, cluster_std=0.60, random_state=0)
 plt.scatter(X[:,0], X[:,1])
-
-
-# In[168]:
-
 
 wcss = []
 dataframe = pd.read_csv(r'C:\Users\Proma_Mukherjee\Downloads\KDDdataset.csv')
